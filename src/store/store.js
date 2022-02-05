@@ -4,7 +4,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { weatherReducer } from './weather.reducer';
 
 const rootReducer = combineReducers({
-    weatherReducer,
+    weatherModule: weatherReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
