@@ -5,10 +5,23 @@ import { SearchLocation } from '../cmps/SearchLocation';
 import { WeatherInfoList } from '../WeatherInfoList';
 
 function _WeatherApp() {
+    const [weatherInfo, setWeatherInfo] = useState(null); 
+
+    useEffect(() => {
+        async function fetchData() {
+
+        }
+        fetchData();
+    })
+
+    const onSearch = (data) => {
+
+    }
+
     return (
         <section>
-            <SearchLocation />
-            <WeatherInfoList />
+            <SearchLocation onSearch={onSearch} />
+            <WeatherInfoList weatherInfo={weatherInfo} />
         </section>
     )
 }
@@ -22,4 +35,3 @@ const mapDispatchToProps = {
 }
 
 export const WeatherApp = connect(mapStateToProps, mapDispatchToProps)(_WeatherApp);
-// export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp);
