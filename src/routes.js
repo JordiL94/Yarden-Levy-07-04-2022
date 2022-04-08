@@ -3,7 +3,7 @@ import { Favorites } from './pages/Favorites';
 
 const routes = [
     {
-        path: '/weather',
+        path: '/',
         component: WeatherApp
     },
     {
