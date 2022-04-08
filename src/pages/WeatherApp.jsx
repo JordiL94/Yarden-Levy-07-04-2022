@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { SearchLocation } from '../cmps/SearchLocation';
-import { WeatherInfoList } from '../WeatherInfoList';
+import { WeatherList } from '../cmps/weather/WeatherList';
 
 function _WeatherApp() {
-    const [weatherInfo, setWeatherInfo] = useState(null); 
+    const [weatherInfo, setWeatherInfo] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -21,12 +21,12 @@ function _WeatherApp() {
     return (
         <section>
             <SearchLocation onSearch={onSearch} />
-            <WeatherInfoList weatherInfo={weatherInfo} />
+            <WeatherList weatherInfo={weatherInfo} />
         </section>
     )
 }
 
-function mapStateToProps({ WeatherModule }){
+function mapStateToProps({ WeatherModule }) {
 
 }
 

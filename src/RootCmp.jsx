@@ -1,12 +1,12 @@
 import { Component } from 'react';
 import { Switch, Route } from 'react-router';
 
-import { AppHeader } from './cmps/AppHeader';
+import { AppHeader } from './cmps/header/AppHeader';
 import routes from './routes';
 
 export class RootCmp extends Component {
 	render() {
-		return(
+		return (
 			<main>
 				<AppHeader />
 				<Switch>
