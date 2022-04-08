@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { SlideMenu } from './SlideMenu';
+
 function _AppHeader() {
 
     return (
@@ -11,6 +13,7 @@ function _AppHeader() {
                 <Link to={'/favorites'}>Favorites</Link>
             </nav>
             <button className='settings-button'>⚙️</button>
+            <SlideMenu className="slide-menu" />
         </section>
     )
 }
