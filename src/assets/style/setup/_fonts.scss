@@ -1,0 +1,35 @@
+@font-face {
+	font-family: Roboto;
+	src: url('../../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+	font-family: Roboto light;
+	src: url('../../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+	font-family: fa;
+	src: url('../../fonts/fa/fa-regular-400.ttf');
+}
+
+@font-face {
+	font-family: fa-brands;
+	src: url('../../fonts/fa/fa-brands-400.ttf');
+}
+
+@font-face {
+	font-family: fa-solid;
+	src: url('../../fonts/fa/fa-solid-900.ttf');
+}
+
+// font-awesome settings
+.fa {
+	font-family: fa;
+}
+.fa-solid {
+	font-family: fa-solid;
+}
+.fa-brands {
+	font-family: fa-brands;
+}

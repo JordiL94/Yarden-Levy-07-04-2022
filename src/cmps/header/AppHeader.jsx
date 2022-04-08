@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { SlideMenu } from './SlideMenu';
 
 function _AppHeader() {
+    const [slideMenu, setSlideMenu] = useState(false);
 
     return (
         <section className="app-header">
@@ -12,8 +14,8 @@ function _AppHeader() {
                 <Link to={'/'}>Home</Link>
                 <Link to={'/favorites'}>Favorites</Link>
             </nav>
-            <button className='settings-button'>⚙️</button>
-            <SlideMenu className="slide-menu" />
+            <button className='settings-button' onClick={setSlideMenu(!slideMenu)}>⚙️</button>
+            {slideMenu && <SlideMenu />}
         </section>
     )
 }

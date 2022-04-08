@@ -1,0 +1,25 @@
+// Setup
+@import "./setup/variables.scss";
+@import "./setup/functions.scss";
+@import "./setup/mixings.scss";
+@import "./setup/fonts.scss";
+
+// Basics
+@import "./basics/helpers.scss";
+@import "./basics/layouts.scss";
+@import "./basics/base.scss";
+
+// Pages
+@import "./pages/weather-app.scss";
+@import "./pages/favorites.scss";
+
+// Components
+@import "./components/search-location.scss";
+
+// Components - weather
+@import "./components/weather/weather-list.scss";
+@import "./components/weather/weather-preview.scss";
+
+// Components - header
+@import "./components/header/app-header.scss";
+@import "./components/header/slide-menu.scss";
