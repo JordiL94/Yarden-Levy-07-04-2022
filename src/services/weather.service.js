@@ -1,5 +1,6 @@
 import { storageService } from './storage.service.js';
 import { httpService } from './http.service.js';
+import { utils } from './utils.service.js';
 
 const DB_KEY = 'weather';
 const FAV_KEY = 'favorite';
@@ -10,7 +11,8 @@ export const weatherService = {
     getWeatherInfo,
     getFavoriteLocations,
     initLocation,
-    addLocationToFavorites
+    addToFavorites,
+    removeFromFavorites
 }
 
 // TODO?: figure out if saving weather info to local storage is even necessary
@@ -38,10 +40,17 @@ function getFavoriteLocations() {
     return favoriteLocations;
 }
 
-function addLocationToFavorites(locationData) {
+function addToFavorites(locationData) {
+    locationData._id = utils.getRandomId();
     const favoriteLocations = storageService.loadFromStorage(FAV_KEY);
     favoriteLocations.push(locationData);
     storageService.saveToStorage(FAV_KEY, favoriteLocations);
+}
+
+function removeFromFavorites(locationId) {
+    const favoriteLocations = storageService.loadFromStorage(FAV_KEY);
+    const updatedFavorites = favoriteLocations.filter(location => location._id !== locationId);
+    storageService.saveToStorage(FAV_KEY, updatedFavorites);
 }
 
 // TODO: figure out if the same method to retrieve weather data from string and from lat/lng is the same 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { SearchLocation } from '../cmps/SearchLocation';
+import { SearchBar } from '../cmps/SearchBar';
 import { WeatherList } from '../cmps/weather/WeatherList';
 
 function _WeatherApp() {
@@ -20,7 +20,7 @@ function _WeatherApp() {
 
     return (
         <section>
-            <SearchLocation onSearch={onSearch} />
+            <SearchBar onSearch={onSearch} placeholder="Search location" />
             <WeatherList weatherInfo={weatherInfo} />
         </section>
     )
