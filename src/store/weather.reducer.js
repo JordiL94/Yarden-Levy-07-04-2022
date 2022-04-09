@@ -16,4 +16,6 @@ export function weatherReducer(state = initialState, action) {
         default:
             return newState;
     };
+
+    return newState;
 }

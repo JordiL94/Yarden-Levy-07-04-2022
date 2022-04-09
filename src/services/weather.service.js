@@ -25,6 +25,7 @@ async function getWeatherInfo(location) {
 
     try {
         locationData = await httpService.get(`${BASE_URL + location.key}?apikey=${API_KEY}`);
+        locationData = JSON.parse(locationData);
         storedLocations.push(locationData);
         storageService.saveToStorage(DB_KEY, storedLocations);
         return Promise.resolve(locationData);
@@ -46,7 +47,7 @@ function addToFavorites(locationData) {
 
 function removeFromFavorites(locationKey) {
     const favoriteLocations = storageService.loadFromStorage(FAV_KEY);
-    const updatedFavorites = favoriteLocations.filter(location => location.key !== locationKey);
+    const updatedFavorites = favoriteLocations.filter(location => location.Key !== locationKey);
     storageService.saveToStorage(FAV_KEY, updatedFavorites);
 }
 
@@ -58,22 +59,8 @@ async function initLocation() {
 
     if (!currLocation) {
         try {
-            const tlv = {
-                "Version": 1,
-                "Key": "215854",
-                "Type": "City",
-                "Rank": 31,
-                "LocalizedName": "Tel Aviv",
-                "Country": {
-                    "ID": "IL",
-                    "LocalizedName": "Israel"
-                },
-                "AdministrativeArea": {
-                    "ID": "TA",
-                    "LocalizedName": "Tel Aviv"
-                }
-            };
-            const locationData = await getWeatherInfo(tlv);
+            const defaultCity = JSON.parse(_getDefaultCity());
+            const locationData = await getWeatherInfo(defaultCity);
             return Promise.resolve(locationData);
         } catch (err) {
             throw err;
@@ -87,6 +74,27 @@ async function initLocation() {
     } catch (err) {
         console.error('Encountered error fetching data:', err);
     }
+}
+
+
+function _getDefaultCity() {
+    const city = {
+        "Version": 1,
+        "Key": "215854",
+        "Type": "City",
+        "Rank": 31,
+        "LocalizedName": "Tel Aviv",
+        "Country": {
+            "ID": "IL",
+            "LocalizedName": "Israel"
+        },
+        "AdministrativeArea": {
+            "ID": "TA",
+            "LocalizedName": "Tel Aviv"
+        }
+    };
+
+    return city;
 }
 
 
