@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export function SearchBar({ onSearch, placeholder = "Search..." }) {
+export const SearchBar = (props) => {
+    const { onSearch, placeholder = "Search..." } = props;
     const [inputVal, setInputVal] = useState(null);
 
     const handleChange = ({ target }) => {

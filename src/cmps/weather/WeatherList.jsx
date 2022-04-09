@@ -1,6 +1,6 @@
 import { WeatherPreview } from './WeatherPreview';
 
-export function WeatherList(props) {
+export const WeatherList = (props) => {
     const { weatherList } = props;
     
     if(!weatherList) return <h2>Loading...</h2>

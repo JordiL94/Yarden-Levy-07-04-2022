@@ -1,4 +1,4 @@
-export function WeatherPreview(props) {
+export const WeatherPreview = (props) => {
     const { weatherItem } = props;
 
     return (
