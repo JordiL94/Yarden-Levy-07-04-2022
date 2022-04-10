@@ -1,9 +1,9 @@
 import { storageService } from './storage.service.js';
-import { httpService } from './http.service.js';
 
+const axios = require('axios');
 const DB_KEY = 'weather';
-const BASE_URL = 'forecasts/v1/daily/5day/'
-const API_KEY = process.env.API_KEY;
+const BASE_URL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/'
+const API_KEY = "rQYaZXc5Pqjzz6HaAuLtZcK2anQuziYK";
 
 export const weatherService = {
     getWeatherInfo,
@@ -20,7 +20,7 @@ async function getWeatherInfo(location) {
     // if (locationData) return Promise.resolve(locationData);
 
     try {
-        let locationData = await httpService.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
+        let locationData = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
         locationData = JSON.parse(locationData);
         storedLocations.push(locationData.DailyForecasts);
         storageService.saveToStorage(DB_KEY, storedLocations);
@@ -48,7 +48,7 @@ async function initLocation() {
 
     try {
         // TODO: correctly insert location into the search key
-        const locationData = await httpService.get(`${BASE_URL + currLocation.Key}?apikey=${API_KEY}`);
+        const locationData = await axios.get(`${BASE_URL + currLocation.Key}?apikey=${API_KEY}`);
         return Promise.resolve(locationData);
     } catch (err) {
         console.error('Encountered error fetching data:', err);

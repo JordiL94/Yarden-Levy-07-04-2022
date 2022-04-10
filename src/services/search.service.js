@@ -1,10 +1,10 @@
 import { storageService } from './storage.service.js';
-import { httpService } from './http.service.js';
-// require('dotenv').config();
 
+const axios = require('axios');
 const DB_KEY = 'location';
-const BASE_URL = 'locations/v1/cities/autocomplete?apikey=';
-const API_KEY = process.env.API_KEY;
+const BASE_URL = 'http://dataservice.accuweather.com//locations/v1/cities/autocomplete?apikey=';
+// const API_KEY = process.env.API_KEY;
+const API_KEY = "rQYaZXc5Pqjzz6HaAuLtZcK2anQuziYK";
 
 export const searchService = {
     suggestedLocations
@@ -13,15 +13,17 @@ export const searchService = {
 async function suggestedLocations(val) {
     const savedLocations = storageService.loadFromStorage(DB_KEY);
     let locations = [];
-    if(savedLocations) locations = savedLocations.filter(savedLocation => 
+    if (savedLocations?.length) locations = savedLocations.filter(savedLocation =>
         savedLocation.toLowerCase().startsWith(val.toLowerCase(), 0));
-    if(locations.length >= 5) return Promise.resolve(locations.splice(0, 5));
+    if (locations.length >= 5) return Promise.resolve(locations.splice(0, 5));
 
     try {
-        locations = await httpService.get(`${BASE_URL + API_KEY}&q=${val}`);
-        _addLocationsToStorage(locations);
-        if(locations.length > 5) return Promise.resolve(locations.splice(0, 5));
-        return Promise.resolve(locations);
+        const { data } = await axios.get(`${BASE_URL + API_KEY}&q=${val}`);
+        // console.log('search.service.js 💤 24: ', data);
+        // locations = JSON.parse(locations);
+        _addLocationsToStorage(data);
+        if (data.length > 5) return Promise.resolve(locations.splice(0, 5));
+        return Promise.resolve(data);
     } catch (err) {
         console.error('Encountered error while fetching data:', err);
     }
@@ -29,10 +31,14 @@ async function suggestedLocations(val) {
 
 function _addLocationsToStorage(locations) {
     const savedLocations = storageService.loadFromStorage(DB_KEY);
-    if(!savedLocations) storageService.saveToStorage(DB_KEY, locations);
+    console.log('search.service.js 💤 36: ', savedLocations);
+    if (!savedLocations) {
+        storageService.saveToStorage(DB_KEY, locations);
+        return;
+    }
 
     const uniqueAdditions = locations.filter(location => !savedLocations.includes(location));
-    if(uniqueAdditions.length) savedLocations.push(uniqueAdditions);
+    if (uniqueAdditions.length) savedLocations.push(uniqueAdditions);
 
     storageService.saveToStorage(DB_KEY, savedLocations);
 }

@@ -21,7 +21,7 @@ export function loadWeatherInfo(location = null) {
     }
 }
 
-export const loadSuggestions = _.debounce((val) => {
+export function loadSuggestions(val) {
     return async (dispatch) => {
         try {
             const suggestions = await searchService.suggestedLocations(val);
@@ -31,7 +31,18 @@ export const loadSuggestions = _.debounce((val) => {
             console.log('Couldn\'t retrieve location suggestions:', err);
         }
     }
-}, 500);
+}
+// export const loadSuggestions = _.debounce((val) => {
+//     return async (dispatch) => {
+//         try {
+//             const suggestions = await searchService.suggestedLocations(val);
+//             dispatch({ type: 'SET_LOCATIONS', suggestions });
+//             return Promise.resolve(suggestions);
+//         } catch (err) {
+//             console.log('Couldn\'t retrieve location suggestions:', err);
+//         }
+//     }
+// }, 500);
 
 export function loadFavorites() {
     return async (dispatch) => {

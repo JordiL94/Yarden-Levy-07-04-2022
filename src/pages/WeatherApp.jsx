@@ -22,7 +22,7 @@ function _WeatherApp(props) {
 
     return (
         <section>
-            <SearchBar onSearch={onSearch} placeholder="Search location" />
+            <SearchBar onSearch={onSearch} placeholder="Search location" loadSuggestions={loadSuggestions} />
             <WeatherList weatherList={weatherInfo} />
         </section>
     )
