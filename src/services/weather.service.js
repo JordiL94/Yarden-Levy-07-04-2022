@@ -2,16 +2,12 @@ import { storageService } from './storage.service.js';
 import { httpService } from './http.service.js';
 
 const DB_KEY = 'weather';
-const FAV_KEY = 'favorite';
 const BASE_URL = 'forecasts/v1/daily/5day/'
 const API_KEY = process.env.API_KEY;
 
 export const weatherService = {
     getWeatherInfo,
-    getFavoriteLocations,
     initLocation,
-    addToFavorites,
-    removeFromFavorites
 }
 
 // TODO?: figure out if saving weather info to local storage is even necessary
@@ -19,12 +15,12 @@ export const weatherService = {
 async function getWeatherInfo(location) {
     const storedLocations = await storageService.loadFromStorage(DB_KEY);
 
-    let locationData = storedLocations.find(storedLocation =>
-        storedLocation.LocalizedName === location.LocalizedName);
-    if (locationData) return Promise.resolve(locationData);
+    // let locationData = storedLocations.find(storedLocation =>
+    //     storedLocation.Key === location.Key);
+    // if (locationData) return Promise.resolve(locationData);
 
     try {
-        locationData = await httpService.get(`${BASE_URL + location.key}?apikey=${API_KEY}`);
+        let locationData = await httpService.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
         locationData = JSON.parse(locationData);
         storedLocations.push(locationData);
         storageService.saveToStorage(DB_KEY, storedLocations);
@@ -32,23 +28,6 @@ async function getWeatherInfo(location) {
     } catch (err) {
         console.error('Encountered error fetching data:', err);
     }
-}
-
-function getFavoriteLocations() {
-    const favoriteLocations = storageService.loadFromStorage(FAV_KEY);
-    return favoriteLocations;
-}
-
-function addToFavorites(locationData) {
-    const favoriteLocations = storageService.loadFromStorage(FAV_KEY);
-    favoriteLocations.push(locationData);
-    storageService.saveToStorage(FAV_KEY, favoriteLocations);
-}
-
-function removeFromFavorites(locationKey) {
-    const favoriteLocations = storageService.loadFromStorage(FAV_KEY);
-    const updatedFavorites = favoriteLocations.filter(location => location.Key !== locationKey);
-    storageService.saveToStorage(FAV_KEY, updatedFavorites);
 }
 
 // TODO: figure out if the same method to retrieve weather data from string and from lat/lng is the same 
@@ -68,8 +47,8 @@ async function initLocation() {
     }
 
     try {
-        // TODO: correctly insert location into the search key, don't forget to update BASE_URL in httpService
-        const locationData = await httpService.get(API_KEY + currLocation);
+        // TODO: correctly insert location into the search key
+        const locationData = await httpService.get(`${BASE_URL + currLocation.Key}?apikey=${API_KEY}`);
         return Promise.resolve(locationData);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
