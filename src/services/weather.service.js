@@ -13,18 +13,13 @@ export const weatherService = {
 // TODO?: figure out if saving weather info to local storage is even necessary
 // if not remove all storageService calls
 async function getWeatherInfo(location) {
-    const storedLocations = await storageService.loadFromStorage(DB_KEY);
-
-    // let locationData = storedLocations.find(storedLocation =>
-    //     storedLocation.Key === location.Key);
-    // if (locationData) return Promise.resolve(locationData);
-
+    // const storedLocations = await storageService.loadFromStorage(DB_KEY);
     try {
-        let locationData = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
-        locationData = JSON.parse(locationData);
-        storedLocations.push(locationData.DailyForecasts);
-        storageService.saveToStorage(DB_KEY, storedLocations);
-        return Promise.resolve(locationData.DailyForecasts);
+        const {data} = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
+        console.log('weather.service.js 💤 19: ', data);
+        // storedLocations.push(data.DailyForecasts[0]);
+        // storageService.saveToStorage(DB_KEY, storedLocations);
+        return Promise.resolve(data.DailyForecasts);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
     }
@@ -38,7 +33,7 @@ async function initLocation() {
 
     if (!currLocation) {
         try {
-            const defaultCity = JSON.parse(_getDefaultCity());
+            const defaultCity = _getDefaultCity();
             const locationData = await getWeatherInfo(defaultCity);
             return Promise.resolve(locationData);
         } catch (err) {
@@ -48,8 +43,8 @@ async function initLocation() {
 
     try {
         // TODO: correctly insert location into the search key
-        const locationData = await axios.get(`${BASE_URL + currLocation.Key}?apikey=${API_KEY}`);
-        return Promise.resolve(locationData);
+        const {data} = await axios.get(`${BASE_URL + currLocation.Key}?apikey=${API_KEY}`);
+        return Promise.resolve(data);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
     }
@@ -58,18 +53,18 @@ async function initLocation() {
 
 function _getDefaultCity() {
     const city = {
-        "Version": 1,
-        "Key": "215854",
-        "Type": "City",
-        "Rank": 31,
-        "LocalizedName": "Tel Aviv",
-        "Country": {
-            "ID": "IL",
-            "LocalizedName": "Israel"
+        Version: 1,
+        Key: "215854",
+        Type: "City",
+        Rank: 31,
+        LocalizedName: "Tel Aviv",
+        Country: {
+            ID: "IL",
+            LocalizedName: "Israel"
         },
-        "AdministrativeArea": {
-            "ID": "TA",
-            "LocalizedName": "Tel Aviv"
+        AdministrativeArea: {
+            ID: 'TA',
+            LocalizedName: "Tel Aviv"
         }
     };
 

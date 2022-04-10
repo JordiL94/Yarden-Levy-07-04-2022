@@ -12,8 +12,6 @@ export function weatherReducer(state = initialState, action) {
             newState = { ...state, weatherInfo: [...action.newInfo] };
             break;
         case 'SET_LOCATIONS':
-            console.log('weather.reducer.js 💤 15: ', action);
-            console.log('weather.reducer.js 💤 16: ', action.locations);
             newState = { ...state, locations: [...action.locations] };
             break;
         case 'SET_FAVORITES':

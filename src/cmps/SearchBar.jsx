@@ -32,7 +32,7 @@ export const SearchBar = (props) => {
                 <button>🔍</button>
             </form>
             {suggestions?.length &&
-                <ul className="search-suggestions flex column">
+                <ul className="search-suggestions clean-list flex column">
                     {suggestions.map(suggestion => <li onClick={() => onSearch(suggestion)} key={suggestion.Key}>{suggestion.LocalizedName}</li>)}
                 </ul>}
         </section>

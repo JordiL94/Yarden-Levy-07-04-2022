@@ -19,8 +19,6 @@ async function suggestedLocations(val) {
 
     try {
         const { data } = await axios.get(`${BASE_URL + API_KEY}&q=${val}`);
-        // console.log('search.service.js 💤 24: ', data);
-        // locations = JSON.parse(locations);
         _addLocationsToStorage(data);
         if (data.length > 5) return Promise.resolve(locations.splice(0, 5));
         return Promise.resolve(data);
@@ -31,7 +29,6 @@ async function suggestedLocations(val) {
 
 function _addLocationsToStorage(locations) {
     const savedLocations = storageService.loadFromStorage(DB_KEY);
-    console.log('search.service.js 💤 36: ', savedLocations);
     if (!savedLocations) {
         storageService.saveToStorage(DB_KEY, locations);
         return;

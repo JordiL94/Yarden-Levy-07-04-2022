@@ -5,7 +5,7 @@ export const WeatherPreview = ({ weatherItem }) => {
 
     const formattedDate = utils.getDate(EpochDate);
 
-    const avgTemp = (Temperature.Maximum.value + Temperature.Minimum.value) / 2;
+    const avgTemp = (+Temperature.Maximum.Value + Temperature.Minimum.Value) / 2;
 
     return (
         <div className="info-preview flex column">
