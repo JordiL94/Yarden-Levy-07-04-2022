@@ -2,12 +2,15 @@ import { storageService } from './storage.service.js';
 import { httpService } from './http.service.js';
 // require('dotenv').config();
 
-const _ = require('lodash');
 const DB_KEY = 'location';
-const BASE_URL = 'locations/v1/cities/autocomplete?apikey='
+const BASE_URL = 'locations/v1/cities/autocomplete?apikey=';
 const API_KEY = process.env.API_KEY;
 
-const suggestedLocations = _.debounce(async(val) => {
+export const searchService = {
+    suggestedLocations
+}
+
+async function suggestedLocations(val) {
     const savedLocations = storageService.loadFromStorage(DB_KEY);
     let locations = [];
     if(savedLocations) locations = savedLocations.filter(savedLocation => 
@@ -22,7 +25,7 @@ const suggestedLocations = _.debounce(async(val) => {
     } catch (err) {
         console.error('Encountered error while fetching data:', err);
     }
-}, 500);
+}
 
 function _addLocationsToStorage(locations) {
     const savedLocations = storageService.loadFromStorage(DB_KEY);
@@ -32,10 +35,6 @@ function _addLocationsToStorage(locations) {
     if(uniqueAdditions.length) savedLocations.push(uniqueAdditions);
 
     storageService.saveToStorage(DB_KEY, savedLocations);
-}
-
-export const searchService = {
-    suggestedLocations
 }
 
 const autoCompleteExmp = [

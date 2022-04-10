@@ -4,30 +4,26 @@ import { connect } from 'react-redux';
 import { SearchBar } from '../cmps/SearchBar';
 import { WeatherList } from '../cmps/weather/WeatherList';
 
-function _WeatherApp() {
-    const [weatherInfo, setWeatherInfo] = useState(null);
-
-    useEffect(() => {
-        async function fetchData() {
-
-        }
-        fetchData();
-    })
+function _WeatherApp(props) {
+    const { weatherInfo, locations } = props;
 
     const onSearch = (data) => {
-        
+
     }
 
     return (
         <section>
             <SearchBar onSearch={onSearch} placeholder="Search location" />
-            <WeatherList weatherInfo={weatherInfo} />
+            <WeatherList weatherList={weatherInfo} />
         </section>
     )
 }
 
 function mapStateToProps({ WeatherModule }) {
-
+    return {
+        weatherInfo: WeatherModule.weatherInfo,
+        locations: WeatherModule.locations
+    }
 }
 
 const mapDispatchToProps = {
