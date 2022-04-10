@@ -24,9 +24,9 @@ export function loadWeatherInfo(location = null) {
 export function loadSuggestions(val) {
     return async (dispatch) => {
         try {
-            const suggestions = await searchService.suggestedLocations(val);
-            dispatch({ type: 'SET_LOCATIONS', suggestions });
-            return Promise.resolve(suggestions);
+            const locations = await searchService.suggestedLocations(val);
+            dispatch({ type: 'SET_LOCATIONS', locations });
+            return Promise.resolve(locations);
         } catch (err) {
             console.log('Couldn\'t retrieve location suggestions:', err);
         }

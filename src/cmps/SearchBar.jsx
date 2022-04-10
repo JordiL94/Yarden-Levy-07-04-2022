@@ -12,7 +12,10 @@ export const SearchBar = (props) => {
 
     useEffect(() => {
         (async () => {
-            if (inputVal === '') return;
+            if (inputVal === '') {
+                setSuggestions([]);
+                return;
+            }
             try {
                 const suggestions = await loadSuggestions(inputVal);
                 setSuggestions(suggestions);
@@ -30,7 +33,7 @@ export const SearchBar = (props) => {
             </form>
             {suggestions?.length &&
                 <ul className="search-suggestions flex column">
-                    {suggestions.map(suggestion => <li onClick={() => onSearch(suggestion)}>{suggestion.LocalizedName}</li>)}
+                    {suggestions.map(suggestion => <li onClick={() => onSearch(suggestion)} key={suggestion.Key}>{suggestion.LocalizedName}</li>)}
                 </ul>}
         </section>
     )

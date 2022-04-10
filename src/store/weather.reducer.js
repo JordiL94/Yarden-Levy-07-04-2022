@@ -9,13 +9,15 @@ export function weatherReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_WEATHER_INFO':
-            newState = { ...state, weatherInfo: [...action] };
+            newState = { ...state, weatherInfo: [...action.newInfo] };
             break;
         case 'SET_LOCATIONS':
-            newState = { ...state, locations: [...action] };
+            console.log('weather.reducer.js 💤 15: ', action);
+            console.log('weather.reducer.js 💤 16: ', action.locations);
+            newState = { ...state, locations: [...action.locations] };
             break;
         case 'SET_FAVORITES':
-            newState = { ...state, locations: [...action] };
+            newState = { ...state, favorites: [...action.favorites] };
             break;
         default:
             return newState;
