@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { lodash as _ } from 'lodash';
 
 import { loadWeatherInfo, loadSuggestions, loadFavorites, addToFavorites, removeFromFavorites } from '../store/weather.action';
 import { SearchBar } from '../cmps/SearchBar';
 import { WeatherList } from '../cmps/weather/WeatherList';
 
 function _WeatherApp(props) {
-    const { weatherInfo, 
-        locations, 
-        favorites, 
-        loadWeatherInfo, 
-        loadSuggestions, 
-        loadFavorites, 
-        addToFavorites, 
-        removeFromFavorites 
+    const { weatherInfo,
+        locations,
+        favorites,
+        loadWeatherInfo,
+        loadSuggestions,
+        loadFavorites,
+        addToFavorites,
+        removeFromFavorites
     } = props;
 
-    const onSearch = async (data) => {
+    const onSearch = _.debounce(async (data) => {
         await loadWeatherInfo(data);
-    }
+    }, 500);
 
     return (
-        <section>
+        <section className="weather-app">
             <SearchBar onSearch={onSearch} placeholder="Search location" loadSuggestions={loadSuggestions} />
             <WeatherList weatherList={weatherInfo} />
         </section>
@@ -36,10 +37,10 @@ function mapStateToProps({ weatherModule }) {
 }
 
 const mapDispatchToProps = {
-    loadWeatherInfo, 
-    loadSuggestions, 
-    loadFavorites, 
-    addToFavorites, 
+    loadWeatherInfo,
+    loadSuggestions,
+    loadFavorites,
+    addToFavorites,
     removeFromFavorites
 }
 

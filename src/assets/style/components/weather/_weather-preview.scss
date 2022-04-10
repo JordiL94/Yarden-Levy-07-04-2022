@@ -1,0 +1,23 @@
+.weather-preview {
+    // align-items: center;
+    text-overflow:clip;
+    width: 10rem;
+    text-align: center;
+    // padding: 5px;
+    border: 1px solid gray;
+    border-radius: 7px;
+    background-color: lightgray;
+    div {
+        padding: 5px;
+        height: 10rem;
+    }
+    a {
+        background-color: inherit;
+        border: none;
+        border-top: 1px solid gray;
+        height: 2rem;
+    }
+    img {
+        border-bottom: 1px solid gray;
+    }
+}

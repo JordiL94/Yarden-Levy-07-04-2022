@@ -1,9 +1,8 @@
 import { storageService } from './storage.service.js';
+import axios from 'axios';
 
-const axios = require('axios');
 const DB_KEY = 'location';
 const BASE_URL = 'http://dataservice.accuweather.com//locations/v1/cities/autocomplete?apikey=';
-// const API_KEY = process.env.API_KEY;
 const API_KEY = "rQYaZXc5Pqjzz6HaAuLtZcK2anQuziYK";
 
 export const searchService = {

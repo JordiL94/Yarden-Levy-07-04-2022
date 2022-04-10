@@ -13,7 +13,7 @@ function _Favorites() {
     }
 
     return (
-        <section>
+        <section className="favorites">
             <SearchBar onSearch={onSearch} placeholder="Search favorites" />
             <WeatherList weatherInfo={weatherInfo} />
         </section>

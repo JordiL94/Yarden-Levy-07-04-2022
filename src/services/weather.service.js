@@ -1,7 +1,5 @@
-import { storageService } from './storage.service.js';
+import axios from 'axios';
 
-const axios = require('axios');
-const DB_KEY = 'weather';
 const BASE_URL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/'
 const API_KEY = "rQYaZXc5Pqjzz6HaAuLtZcK2anQuziYK";
 
@@ -10,15 +8,10 @@ export const weatherService = {
     initLocation,
 }
 
-// TODO?: figure out if saving weather info to local storage is even necessary
-// if not remove all storageService calls
 async function getWeatherInfo(location) {
-    // const storedLocations = await storageService.loadFromStorage(DB_KEY);
     try {
         const {data} = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
         console.log('weather.service.js 💤 19: ', data);
-        // storedLocations.push(data.DailyForecasts[0]);
-        // storageService.saveToStorage(DB_KEY, storedLocations);
         return Promise.resolve(data.DailyForecasts);
     } catch (err) {
         console.error('Encountered error fetching data:', err);

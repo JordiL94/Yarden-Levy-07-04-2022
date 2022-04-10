@@ -6,7 +6,7 @@ export const SlideMenu = (props) => {
     return <div></div>
 
     return (
-        <section>
+        <section className="slide-menu">
             <nav>
                 <Link to={'/'}>Home</Link>
                 <Link to={'/favorites'}>Favorites</Link>
