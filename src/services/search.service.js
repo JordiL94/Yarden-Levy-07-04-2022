@@ -14,7 +14,7 @@ async function suggestedLocations(val) {
     const savedLocations = storageService.loadFromStorage(DB_KEY);
     let locations = [];
     if (savedLocations?.length) locations = savedLocations.filter(savedLocation =>
-        savedLocation.toLowerCase().startsWith(val.toLowerCase(), 0));
+        savedLocation.LocalizedName.toLowerCase().startsWith(val.toLowerCase(), 0));
     if (locations.length >= 5) return Promise.resolve(locations.splice(0, 5));
 
     try {

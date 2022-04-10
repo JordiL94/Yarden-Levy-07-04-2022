@@ -16,7 +16,6 @@ export const SearchBar = (props) => {
             try {
                 const suggestions = await loadSuggestions(inputVal);
                 setSuggestions(suggestions);
-                console.log(suggestions);
             } catch (err) {
                 console.log('Encountered error retrieving suggestions:', err);
             }
@@ -29,7 +28,7 @@ export const SearchBar = (props) => {
                 <input type="text" value={inputVal} onChange={handleChange} placeholder={placeholder} />
                 <button>🔍</button>
             </form>
-            {suggestions.length &&
+            {suggestions?.length &&
                 <ul className="search-suggestions flex column">
                     {suggestions.map(suggestion => <li onClick={() => onSearch(suggestion)}>{suggestion.LocalizedName}</li>)}
                 </ul>}
