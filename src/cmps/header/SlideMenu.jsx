@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 
 export const SlideMenu = (props) => {
-    const { preferences } = props;
+    // const { preferences } = props;
+
+    return <div></div>
 
     return (
         <section>

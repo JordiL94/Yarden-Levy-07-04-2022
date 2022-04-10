@@ -22,9 +22,9 @@ async function getWeatherInfo(location) {
     try {
         let locationData = await httpService.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
         locationData = JSON.parse(locationData);
-        storedLocations.push(locationData);
+        storedLocations.push(locationData.DailyForecasts);
         storageService.saveToStorage(DB_KEY, storedLocations);
-        return Promise.resolve(locationData);
+        return Promise.resolve(locationData.DailyForecasts);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
     }
