@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { loadFavorites, removeFromFavorites } from '../store/weather.action';
+import { loadFavorites, loadWeatherInfo } from '../store/weather.action';
 import { SearchBar } from '../cmps/SearchBar';
 import { WeatherList } from '../cmps/weather/WeatherList';
 
 function _Favorites(props) {
-    const { favorites, loadFavorites, removeFromFavorites, isDarkMode, isFarenheit } = props;
+    const { favorites, 
+        loadFavorites, 
+        loadWeatherInfo, 
+        isDarkMode, 
+        isFarenheit 
+    } = props;
 
-    const onSearch = (val) => {
-        
-    }
+    useEffect(() => {
+        loadFavorites();
+    })
 
     return (
         <section className={isDarkMode ? "favorites" : "favorites dark"}>
-            <SearchBar onSearch={onSearch} placeholder="Search favorites" />
-            <WeatherList weatherList={favorites} isFarenheit={isFarenheit} />
+            <WeatherList weatherList={favorites} isFarenheit={isFarenheit}
+                loadWeatherInfo={loadWeatherInfo} fromFavorites={true} />
         </section>
     )
 }
@@ -30,7 +35,7 @@ function mapStateToProps({ weatherModule, userModule }) {
 
 const mapDispatchToProps = {
     loadFavorites,
-    removeFromFavorites
+    loadWeatherInfo
 }
 
 export const Favorites = connect(mapStateToProps, mapDispatchToProps)(_Favorites);

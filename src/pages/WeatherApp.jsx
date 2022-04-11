@@ -23,7 +23,7 @@ function _WeatherApp(props) {
 
     useEffect(() => {
         (async () => {
-            await loadWeatherInfo();
+            if (!weatherInfo) await loadWeatherInfo();
         })()
     }, []);
 
@@ -43,7 +43,7 @@ function _WeatherApp(props) {
     }, 500)
 
     const onToggleFavorites = (data, action) => {
-        if(action) addToFavorites(data);
+        if (action) addToFavorites(data);
         else removeFromFavorites(data);
     }
 
@@ -53,7 +53,8 @@ function _WeatherApp(props) {
                 onGetSuggestions={onGetSuggestions} suggestions={locations} />
             <MainForecast currLocation={currLocation} mainForecast={weatherInfo.Headline}
                 favorites={favorites} onToggleFavorites={onToggleFavorites} />
-            <WeatherList weatherList={weatherInfo.DailyForecasts} isFarenheit={isFarenheit} />
+            <WeatherList weatherList={weatherInfo.DailyForecasts} isFarenheit={isFarenheit}
+                loadWeatherInfo={loadWeatherInfo} fromFavorites={false} />
         </section>
     )
 }
