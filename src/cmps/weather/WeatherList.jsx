@@ -11,7 +11,7 @@ export const WeatherList = (props) => {
             {weatherList.map(weatherItem => {
                 return (
                     <WeatherPreview weatherItem={weatherItem} isFarenheit={isFarenheit}
-                        loadWeatherInfo={loadWeatherInfo} fromFavorites={fromFavorites} />
+                        loadWeatherInfo={loadWeatherInfo} fromFavorites={fromFavorites} key={weatherItem.Key} />
                 )
             })}
         </section>

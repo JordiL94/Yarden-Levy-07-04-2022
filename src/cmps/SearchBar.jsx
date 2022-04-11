@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const SearchBar = (props) => {
     const { onSearch, placeholder = "Search...", onGetSuggestions, suggestions } = props;
@@ -21,10 +21,10 @@ export const SearchBar = (props) => {
                 <input type="text" value={inputVal} onChange={handleChange} placeholder={placeholder} pattern="[a-zA-Z]" />
                 <button>🔍</button>
             </form>
-            {suggestions?.length &&
+            {suggestions?.length && inputVal.length >=2 ?
                 <ul className="search-suggestions clean-list flex column">
                     {suggestions.map(suggestion => <li onClick={() => onSearch(suggestion)} key={suggestion.Key}>{suggestion.LocalizedName}</li>)}
-                </ul>}
+                </ul> : <React.Fragment />}
         </section>
     )
 }

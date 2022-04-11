@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { lodash as _ } from 'lodash';
+import * as _ from 'lodash';
 
 import { loadWeatherInfo, loadSuggestions, addToFavorites, removeFromFavorites } from '../store/weather.action';
 import { SearchBar } from '../cmps/SearchBar';
@@ -39,8 +39,9 @@ function _WeatherApp(props) {
     };
 
     const onGetSuggestions = _.debounce(async (data) => {
+        console.log('WeatherApp.jsx 💤 42: ', weatherInfo);
         await loadSuggestions(data);
-    }, 500)
+    }, 1500)
 
     const onToggleFavorites = (data, action) => {
         if (action) addToFavorites(data, weatherInfo.DailyForecasts[0]);

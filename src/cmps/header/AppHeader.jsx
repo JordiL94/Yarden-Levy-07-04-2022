@@ -11,12 +11,14 @@ const _AppHeader = (props) => {
     const [slideMenu, setSlideMenu] = useState(false);
 
     return (
-        <section className="app-header flex">
-            <img src="" alt="" />
-            <nav className="desktop-nav">
-                <Link to={'/'}>Home</Link>
-                <Link to={'/favorites'}>Favorites</Link>
-            </nav>
+        <section className="app-header flex space-between">
+            <div>
+                <img src="" alt="" />
+                <nav className="desktop-nav flex">
+                    <Link to={'/'}>Home</Link>
+                    <Link to={'/favorites'}>Favorites</Link>
+                </nav>
+            </div>
             <button className='settings-button' onClick={() => setSlideMenu(!slideMenu)}>⚙️</button>
             {slideMenu && <SlideMenu toggleDarkMode={toggleDarkMode} toggleFarenheit={toggleFarenheit}
                 isDarkMode={isDarkMode} isFarenheit={isFarenheit} />}

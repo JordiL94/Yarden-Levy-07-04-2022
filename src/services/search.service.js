@@ -19,7 +19,7 @@ async function suggestedLocations(val) {
     try {
         const { data } = await axios.get(`${BASE_URL + API_KEY}&q=${val}`);
         _addLocationsToStorage(data);
-        if (data.length > 5) return Promise.resolve(locations.splice(0, 5));
+        if (data.length > 5) return Promise.resolve(data.splice(0, 5));
         return Promise.resolve(data);
     } catch (err) {
         console.error('Encountered error while fetching data:', err);
@@ -33,8 +33,9 @@ function _addLocationsToStorage(locations) {
         return;
     }
 
-    const uniqueAdditions = locations.filter(location => !savedLocations.includes(location));
-    if (uniqueAdditions.length) savedLocations.push(uniqueAdditions);
+    locations.forEach(location => {
+        if (!savedLocations.includes(location)) savedLocations.push(location)
+    });
 
     storageService.saveToStorage(DB_KEY, savedLocations);
 }

@@ -32,7 +32,7 @@ export function loadSuggestions(val) {
 export function loadFavorites() {
     return async (dispatch) => {
         try {
-            const favorites = await favoritesService.getFavoriteLocations();
+            const favorites = await favoritesService.getFavoriteLocations() || [];
             dispatch({ type: 'SET_FAVORITES', favorites });
             return Promise.resolve();
         } catch (err) {

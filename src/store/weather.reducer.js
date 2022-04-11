@@ -18,7 +18,7 @@ export function weatherReducer(state = initialState, action) {
             newState = { ...state, favorites: [...action.favorites] };
             break;
         case 'ADD_FAVORITE':
-            newState = { ...state, favorites: [...state.favorites, action.location] };
+            newState = { ...state, favorites: [...state.favorites, action.newFavorite] };
             break;
         case 'REMOVE_FAVORITE':
             newState = {

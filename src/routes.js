@@ -3,12 +3,12 @@ import { Favorites } from './pages/Favorites';
 
 const routes = [
     {
-        path: '/',
-        component: WeatherApp
-    },
-    {
         path: '/favorites',
         component: Favorites
+    },
+    {
+        path: '/',
+        component: WeatherApp
     }
 ];
 
