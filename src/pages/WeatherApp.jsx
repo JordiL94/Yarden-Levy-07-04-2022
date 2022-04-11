@@ -11,6 +11,8 @@ function _WeatherApp(props) {
     const { weatherInfo,
         locations,
         favorites,
+        isDarkMode,
+        isFarenheit,
         loadWeatherInfo,
         loadSuggestions,
         addToFavorites,
@@ -51,15 +53,18 @@ function _WeatherApp(props) {
                 onGetSuggestions={onGetSuggestions} suggestions={locations} />
             <MainForecast currLocation={currLocation} mainForecast={weatherInfo.Headline}
                 favorites={favorites} onToggleFavorites={onToggleFavorites} />
-            <WeatherList weatherList={weatherInfo.DailyForecasts} />
+            <WeatherList weatherList={weatherInfo.DailyForecasts} isFarenheit={isFarenheit} />
         </section>
     )
 }
 
-function mapStateToProps({ weatherModule }) {
+function mapStateToProps({ weatherModule, userModule }) {
     return {
         weatherInfo: weatherModule.weatherInfo,
-        locations: weatherModule.locations
+        locations: weatherModule.locations,
+        favorites: weatherModule.favorites,
+        isDarkMode: userModule.isDarkMode,
+        isFarenheit: userModule.isFarenheit
     }
 }
 

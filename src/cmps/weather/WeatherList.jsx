@@ -2,7 +2,7 @@ import { WeatherPreview } from './WeatherPreview';
 import { Loading } from '../Loading';
 
 export const WeatherList = (props) => {
-    const { weatherList } = props;
+    const { weatherList, isFarenheit } = props;
     
     if(!weatherList) return <Loading />;
 
@@ -10,7 +10,7 @@ export const WeatherList = (props) => {
         <section className="weather-list flex">
             {weatherList.map(weatherItem => {
                 return (
-                    <WeatherPreview weatherItem={weatherItem} />
+                    <WeatherPreview weatherItem={weatherItem} isFarenheit={isFarenheit} />
                 )
             })}
         </section>

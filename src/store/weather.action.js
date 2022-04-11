@@ -44,7 +44,7 @@ export function loadFavorites() {
 export function addToFavorites(location) {
     return async (dispatch) => {
         try {
-            const newFavorites = await favoritesService.addToFavorites(location);
+            await favoritesService.addToFavorites(location);
             dispatch({ type: 'ADD_FAVORITES', location });
             return Promise.resolve();
         } catch (err) {
@@ -56,7 +56,7 @@ export function addToFavorites(location) {
 export function removeFromFavorites(key) {
     return async (dispatch) => {
         try {
-            const newFavorites = await favoritesService.removeFromFavorites(key);
+            await favoritesService.removeFromFavorites(key);
             dispatch({ type: 'REMOVE_FAVORITES', key });
             return Promise.resolve();
         } catch (err) {

@@ -25,7 +25,6 @@ function mapStateToProps({ WeatherModule }) {
 }
 
 const mapDispatchToProps = {
-
 }
 
 export const Favorites = connect(mapStateToProps, mapDispatchToProps)(_Favorites);
