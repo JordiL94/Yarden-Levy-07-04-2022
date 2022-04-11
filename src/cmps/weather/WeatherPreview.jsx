@@ -24,7 +24,7 @@ export const WeatherPreview = ({ weatherItem, isFarenheit, fromFavorites, loadWe
                 <h2>{Day.IconPhrase}</h2>
                 <h3>{displayTemp}</h3>
             </div>
-            {fromFavorites && <a href={Link}>Read More</a>}
+            {!fromFavorites && <a href={Link}>Read More</a>}
         </div>
     )
 }
