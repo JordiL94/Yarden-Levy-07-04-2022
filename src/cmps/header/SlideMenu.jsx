@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
 export const SlideMenu = (props) => {
-    const { toggleDarkMode, toggleFarenheit, isDarkMode, isFarenheit } = props;
+    const { toggleDarkMode, toggleFarenheit, isDarkMode, isFarenheit, slideMenu } = props;
 
     return (
-        <section className="slide-menu flex column space-between">
+        <section className={slideMenu ? "slide-menu visible flex column space-between" : "slide-menu flex column space-between"}>
             <nav className="mobile-nav flex column">
                 <Link to={'/'}>Home</Link>
                 <Link to={'/favorites'}>Favorites</Link>

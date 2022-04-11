@@ -41,6 +41,5 @@ function _createFavorite(data) {
         Link
     }
 
-
     return favorite;
 }

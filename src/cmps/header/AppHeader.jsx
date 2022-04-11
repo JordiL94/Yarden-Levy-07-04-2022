@@ -20,8 +20,8 @@ const _AppHeader = (props) => {
                 </nav>
             </div>
             <button className='settings-button' onClick={() => setSlideMenu(!slideMenu)}>⚙️</button>
-            {slideMenu && <SlideMenu toggleDarkMode={toggleDarkMode} toggleFarenheit={toggleFarenheit}
-                isDarkMode={isDarkMode} isFarenheit={isFarenheit} />}
+            <SlideMenu toggleDarkMode={toggleDarkMode} toggleFarenheit={toggleFarenheit}
+                isDarkMode={isDarkMode} isFarenheit={isFarenheit} slideMenu={slideMenu} />
         </section>
     )
 }

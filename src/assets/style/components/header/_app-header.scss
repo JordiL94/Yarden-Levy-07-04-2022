@@ -20,19 +20,19 @@
 		height: inherit;
 		a {
 			height: 100%;
-			padding: 0 1rem;
+			padding: 1.7rem 0;
+			width: 7rem;
 			&:hover {
-				background-color: lightblue;
+				background: #efeeee;
 			}
 		}
 	}
-	button {
+	.settings-button {
+		z-index: 3;
 		cursor: pointer;
 		border: none;
 		background-color: inherit;
-		width: 4.6875rem;
-		&:hover {
-			background-color: lightblue;
-		}
+		// width: 4.6875rem;
+		font-size: 1.8rem;
 	}
 }

@@ -1,12 +1,18 @@
 .slide-menu {
     text-align: center;
-    padding: 2rem .5rem 3rem;
-    position: absolute;
-    right: 0;
+    padding: 4rem 0 3rem;
+    position: fixed;
+    transform: translateX(100%);
     top: 4.6875rem;
     height: calc(100% - 4.6875rem);
-    background-color: red;
-    min-width: 13rem;
+    background-color: #f7f7f7;
+    min-width: 15rem;
+    transition: .5s ease;
+    right: 0;
+
+    &.visible {
+        transform: translateX(0);
+    }
 
     .mobile-nav {
         display: none;
@@ -19,6 +25,13 @@
     }
 
     button {
-        width: fit-content;
+        padding: .5rem;
+        width: 100%;
+        cursor: pointer;
+		border: none;
+		background-color: inherit;
+        &:hover {
+            background: #efeeee;
+        }
     }
 }

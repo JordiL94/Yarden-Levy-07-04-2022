@@ -3,9 +3,7 @@ import { searchService } from '../services/search.service.js';
 import { favoritesService } from '../services/favorites.service.js';
 
 export function loadWeatherInfo(location = null) {
-    return async (dispatch, getState) => {
-        const state = getState();
-        const { weatherInfo } = state.weatherModule;
+    return async (dispatch) => {
         try {
             const newInfo = location ? await weatherService.getWeatherInfo(location) :
                 await weatherService.initLocation();
