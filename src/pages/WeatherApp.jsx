@@ -19,8 +19,6 @@ function _WeatherApp(props) {
         removeFromFavorites
     } = props;
 
-    const [currLocation, setCurrLocation] = useState(null);
-
     useEffect(() => {
         (async () => {
              await loadWeatherInfo();
@@ -31,10 +29,8 @@ function _WeatherApp(props) {
         if (typeof (data) === String) {
             if (!locations.length) return;
             await loadWeatherInfo(locations[0]);
-            setCurrLocation(locations[0])
         } else {
             await loadWeatherInfo(data);
-            setCurrLocation(data);
         }
     };
 
@@ -44,14 +40,14 @@ function _WeatherApp(props) {
 
     const onToggleFavorites = action => {
         if (action) addToFavorites(weatherInfo);
-        else removeFromFavorites(weatherInfo);
+        else removeFromFavorites(weatherInfo.Headline.Key);
     }
 
     return (
-        <section className="weather-app">
+        <section className={isDarkMode ? "weather-app" : "weather-app dark"}>
             <SearchBar onSearch={onSearch} placeholder="Search location"
                 onGetSuggestions={onGetSuggestions} suggestions={locations} />
-            <MainForecast currLocation={currLocation} mainForecast={weatherInfo.Headline}
+            <MainForecast mainForecast={weatherInfo.Headline}
                 favorites={favorites} onToggleFavorites={onToggleFavorites} />
             <WeatherList weatherList={weatherInfo.DailyForecasts} isFarenheit={isFarenheit}
                 loadWeatherInfo={loadWeatherInfo} fromFavorites={false} />

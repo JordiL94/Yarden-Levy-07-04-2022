@@ -15,7 +15,7 @@ function _Favorites(props) {
 
     useEffect(() => {
         loadFavorites();
-    })
+    }, []);
 
     return (
         <section className={isDarkMode ? "favorites" : "favorites dark"}>

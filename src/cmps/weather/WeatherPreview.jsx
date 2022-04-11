@@ -17,14 +17,14 @@ export const WeatherPreview = ({ weatherItem, isFarenheit, fromFavorites, loadWe
     }
 
     return (
-        <div className="weather-preview flex column" onClick={() => directToApp}>
+        <div className="weather-preview flex column" onClick={() => directToApp()}>
             <img src={require(`../../assets/img/weather-icons/${Day.Icon}.png`)} alt="placeholder" />
             <div className="daily-info">
                 <h3>{day}</h3>
                 <h2>{Day.IconPhrase}</h2>
                 <h3>{displayTemp}</h3>
             </div>
-            {!fromFavorites && <a href={Link}>Read More</a>}
+            {fromFavorites ? <h5>{weatherItem.LocalizedName}</h5> : <a href={Link}>Read More</a>}
         </div>
     )
 }

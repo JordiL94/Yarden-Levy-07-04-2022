@@ -4,20 +4,41 @@
     width: 10rem;
     text-align: center;
     // padding: 5px;
-    border: 1px solid gray;
+    border: 1px solid #e0e0e0;
     border-radius: 7px;
-    background-color: lightgray;
-    div {
+	background: #f7f7f786;
+
+    .daily-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
         padding: 5px;
-        height: 10rem;
+        height: 8rem;
     }
     a {
+        padding: .35rem 0;
         background-color: inherit;
         border: none;
-        border-top: 1px solid gray;
+        border-top: 1px solid #e0e0e0;
         height: 2rem;
+        &:hover {
+            background: #efeeee;
+        }
     }
+    
+    h5 {
+        font-size: 1rem;
+        padding: .35rem 0;
+        background-color: inherit;
+        border: none;
+        border-top: 1px solid #e0e0e0;
+        height: 2rem;
+        &:hover {
+            background: #efeeee;
+        }
+    }
+
     img {
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid #e0e0e0;
     }
 }
