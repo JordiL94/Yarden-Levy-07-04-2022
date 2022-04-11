@@ -13,9 +13,9 @@ async function getFavoriteLocations() {
     return Promise.resolve(favoriteLocations);
 }
 
-async function addToFavorites(locationData, weatherData) {
+async function addToFavorites(data) {
     const favoriteLocations = await storageService.loadFromStorage(DB_KEY);
-    const newFavorite = _createFavorite(locationData, weatherData);
+    const newFavorite = _createFavorite(data);
     favoriteLocations.push(newFavorite);
     storageService.saveToStorage(DB_KEY, favoriteLocations);
     return Promise.resolve(newFavorite);
@@ -28,15 +28,17 @@ async function removeFromFavorites(locationKey) {
     return Promise.resolve(updatedFavorites);
 }
 
-function _createFavorite(locationData, weatherData) {
+function _createFavorite(data) {
+    const { Key, LocalizedName } = data.Headline
+    const { EpochDate, Temperature, Day, Night, Link } = data.DailyForecasts[0];
     const favorite = {
-        Key: locationData.Key,
-        LocalizedName: locationData.LocalizedName,
-        EpochDate: weatherData.EpochDate,
-        Temperature: weatherData.Temperature,
-        Day: weatherData.Day,
-        Night: weatherData.Night,
-        Link: weatherData.Link
+        Key,
+        LocalizedName,
+        EpochDate,
+        Temperature,
+        Day,
+        Night,
+        Link
     }
 
     return favorite;

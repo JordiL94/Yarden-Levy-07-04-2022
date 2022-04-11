@@ -12,8 +12,8 @@ const _AppHeader = (props) => {
 
     return (
         <section className="app-header flex space-between">
-            <div>
-                <img src="" alt="" />
+            <div className="flex height-all">
+                <h1>WeatherApp</h1>
                 <nav className="desktop-nav flex">
                     <Link to={'/'}>Home</Link>
                     <Link to={'/favorites'}>Favorites</Link>

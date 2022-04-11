@@ -9,10 +9,10 @@ export const MainForecast = (props) => {
 
     return (
         <section className="main-forecast">
-            {currLocation ? <h3>{currLocation.LocalizedName}</h3> : <h3>Your Location</h3>}
+            <h3>{mainForecast.LocalizedName}</h3>
             {isFavorite ?
-                <button onClick={() => onToggleFavorites(currLocation, true)}>Add To Favorites</button> :
-                <button onClick={() => onToggleFavorites(currLocation, false)}>Unfavorite</button>}
+                <button onClick={() => onToggleFavorites(true)}>Add To Favorites</button> :
+                <button onClick={() => onToggleFavorites(false)}>Unfavorite</button>}
             <h2>{mainForecast.Text}</h2>
         </section>
     )

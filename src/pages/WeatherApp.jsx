@@ -42,9 +42,9 @@ function _WeatherApp(props) {
         await loadSuggestions(data);
     }, 500)
 
-    const onToggleFavorites = (data, action) => {
-        if (action) addToFavorites(data, weatherInfo.DailyForecasts[0]);
-        else removeFromFavorites(data);
+    const onToggleFavorites = action => {
+        if (action) addToFavorites(weatherInfo);
+        else removeFromFavorites(weatherInfo);
     }
 
     return (

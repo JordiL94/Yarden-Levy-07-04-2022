@@ -14,6 +14,8 @@ export const weatherService = {
 async function getWeatherInfo(location) {
     try {
         const { data } = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
+        data.Headline['LocalizedName'] = location.LocalizedName;
+        data.Headline['Key'] = location.Key;
         return Promise.resolve(data);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
