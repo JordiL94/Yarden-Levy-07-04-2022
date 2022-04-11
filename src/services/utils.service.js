@@ -2,6 +2,7 @@ export const utils = {
     getRandomInt,
     getRandomId,
     getDate,
+    getDay
 };
 
 function getRandomId() {
@@ -17,8 +18,15 @@ function getRandomInt(num1, num2) {
     return (Math.floor(Math.random() * (max - min)) + min);
 }
 
+// Both time functions were adjusted to handle epoch date, as per data recieved from AccuWeather API
 function getDate(timestamp) {
-    const date = new Date(timestamp);
+    const date = new Date(timestamp * 1000);
     const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
     return formattedDate;
+}
+
+function getDay(timestamp) {
+    const date = new Date(timestamp * 1000);
+    const options = { weekday: 'long' };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
 }
