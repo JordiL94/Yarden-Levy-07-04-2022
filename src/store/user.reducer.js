@@ -8,10 +8,10 @@ export function userReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'TOGGLE_DARK_MODE':
-            newState = { ...state, weatherInfo: action.isDarkMode };
+            newState = { ...state, isDarkMode: action.isDarkMode };
             break;
         case 'TOGGLE_FARENHEIT':
-            newState = { ...state, locations: action.isFarenheit };
+            newState = { ...state, isFarenheit: action.isFarenheit };
             break;
         default:
             return newState;

@@ -14,10 +14,12 @@
 	}
 	
 	.desktop-nav {
+		display: flexbox;
 		align-items: center;
 		text-align: center;
 		justify-content: center;
 		height: inherit;
+
 		a {
 			height: 100%;
 			padding: 1.7rem 0;
@@ -27,6 +29,7 @@
 			}
 		}
 	}
+
 	.settings-button {
 		z-index: 3;
 		cursor: pointer;
@@ -34,5 +37,12 @@
 		background-color: inherit;
 		// width: 4.6875rem;
 		font-size: 1.8rem;
+	}
+}
+
+
+@media screen and (max-width: 762px) {
+	.desktop-nav {
+		display: none;
 	}
 }

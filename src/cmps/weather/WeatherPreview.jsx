@@ -8,7 +8,7 @@ export const WeatherPreview = ({ weatherItem, isFarenheit, fromFavorites, loadWe
     const day = utils.getDay(EpochDate);
 
     const avgTemp = (Temperature.Maximum.Value + Temperature.Minimum.Value) / 2;
-    const displayTemp = isFarenheit ? `${avgTemp}°F` : `${(avgTemp - 32) * (5 / 9)}°C`;
+    const displayTemp = isFarenheit ? `${avgTemp.toFixed(1)}°F` : `${((avgTemp - 32) * (5 / 9)).toFixed(1)}°C`;
 
     const directToApp = async () => {
         if (!fromFavorites) return;
