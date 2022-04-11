@@ -47,14 +47,10 @@ function _WeatherApp(props) {
 
     return (
         <section className="weather-app">
-            <SearchBar onSearch={onSearch}
-                placeholder="Search location"
-                onGetSuggestions={onGetSuggestions}
-                suggestions={locations} />
-            <MainForecast currLocation={currLocation}
-                mainForecast={weatherInfo.Headline}
-                favorites={favorites}
-                onToggleFavorites={onToggleFavorites} />
+            <SearchBar onSearch={onSearch} placeholder="Search location"
+                onGetSuggestions={onGetSuggestions} suggestions={locations} />
+            <MainForecast currLocation={currLocation} mainForecast={weatherInfo.Headline}
+                favorites={favorites} onToggleFavorites={onToggleFavorites} />
             <WeatherList weatherList={weatherInfo.DailyForecasts} />
         </section>
     )
