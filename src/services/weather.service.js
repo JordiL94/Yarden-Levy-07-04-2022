@@ -14,7 +14,6 @@ export const weatherService = {
 async function getWeatherInfo(location) {
     try {
         const { data } = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
-        console.log('weather.service.js 💤 19: ', data);
         return Promise.resolve(data);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
@@ -22,22 +21,34 @@ async function getWeatherInfo(location) {
 }
 
 async function initLocation() {
-    let currLocation = null;
-    navigator.geolocation.getCurrentPosition(currLocation);
-
-    if (!currLocation) {
-        try {
-            const defaultCity = _getDefaultCity();
-            const locationData = await getWeatherInfo(defaultCity);
-            return Promise.resolve(locationData);
-        } catch (err) {
-            throw err;
-        }
-    }
-
-    const { coords } = currLocation;
     try {
-        const { data } = await axios.get(`${GEOPOS_URL + API_KEY}q=${coords.latitude},${coords.longitude}`);
+        const pos = await _getPosition();
+        return await _geoSuccess(pos);
+    } catch (err) {
+        console.log(err);
+        return await _geoFailure();
+    }
+}
+
+async function getCurrLocationInfo() {
+    try {
+        const pos = await _getPosition();
+        return await _geoSuccess(pos);
+    } catch (err) {
+        Promise.reject('Either you didn\'t allow this app to use your location or your browser doesn\'t support this service');
+    }
+}
+
+function _getPosition() {
+    return new Promise((resolve, reject) => 
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+    );
+}
+
+async function _geoSuccess(pos) {
+    const { coords } = pos;
+    try {
+        const { data } = await axios.get(`${GEOPOS_URL + API_KEY}&q=${coords.latitude}%2C${coords.longitude}`);
         const weatherInfo = await getWeatherInfo(data);
         return Promise.resolve(weatherInfo);
     } catch (err) {
@@ -45,20 +56,13 @@ async function initLocation() {
     }
 }
 
-async function getCurrLocationInfo() {
-    let currLocation = null;
-    navigator.geolocation.getCurrentPosition(currLocation);
-
-    if (!currLocation) return Promise.reject('Either you didn\'t allow this app to use your location or your browser doesn\'t support this service');
-
-    const { coords } = currLocation;
-
+async function _geoFailure() {
     try {
-        const { data } = await axios.get(`${GEOPOS_URL + API_KEY}q=${coords.latitude},${coords.longitude}`);
-        const weatherInfo = await getWeatherInfo(data);
-        return Promise.resolve(weatherInfo);
+        const defaultCity = _getDefaultCity();
+        const locationData = await getWeatherInfo(defaultCity);
+        return Promise.resolve(locationData);
     } catch (err) {
-        console.error('Encountered error fetching data:', err);
+        throw err;
     }
 }
 

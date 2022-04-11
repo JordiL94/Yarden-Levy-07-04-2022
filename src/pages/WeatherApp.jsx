@@ -23,7 +23,7 @@ function _WeatherApp(props) {
 
     useEffect(() => {
         (async () => {
-            if (!weatherInfo) await loadWeatherInfo();
+             await loadWeatherInfo();
         })()
     }, []);
 
@@ -39,9 +39,8 @@ function _WeatherApp(props) {
     };
 
     const onGetSuggestions = _.debounce(async (data) => {
-        console.log('WeatherApp.jsx 💤 42: ', weatherInfo);
         await loadSuggestions(data);
-    }, 1500)
+    }, 500)
 
     const onToggleFavorites = (data, action) => {
         if (action) addToFavorites(data, weatherInfo.DailyForecasts[0]);

@@ -18,7 +18,7 @@ export const WeatherPreview = ({ weatherItem, isFarenheit, fromFavorites, loadWe
 
     return (
         <div className="weather-preview flex column" onClick={() => directToApp}>
-            <img src={`../../assets/img/weather-icons/${Day.Icon}.png`} alt="placeholder" />
+            <img src={require(`../../assets/img/weather-icons/${Day.Icon}.png`)} alt="placeholder" />
             <div className="daily-info">
                 <h3>{day}</h3>
                 <h2>{Day.IconPhrase}</h2>

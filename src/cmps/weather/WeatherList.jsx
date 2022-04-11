@@ -8,10 +8,11 @@ export const WeatherList = (props) => {
 
     return (
         <section className="weather-list flex">
-            {weatherList.map(weatherItem => {
+            {weatherList.map((weatherItem, idx) => {
                 return (
                     <WeatherPreview weatherItem={weatherItem} isFarenheit={isFarenheit}
-                        loadWeatherInfo={loadWeatherInfo} fromFavorites={fromFavorites} key={weatherItem.Key} />
+                        loadWeatherInfo={loadWeatherInfo} fromFavorites={fromFavorites} 
+                        key={`${weatherItem.Key}, ${idx}`} />
                 )
             })}
         </section>

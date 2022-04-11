@@ -7,7 +7,7 @@ export function loadWeatherInfo(location = null) {
         const state = getState();
         const { weatherInfo } = state.weatherModule;
         try {
-            const newInfo = weatherInfo ? await weatherService.getWeatherInfo(location) :
+            const newInfo = location ? await weatherService.getWeatherInfo(location) :
                 await weatherService.initLocation();
             dispatch({ type: 'SET_WEATHER_INFO', newInfo });
             return Promise.resolve();
