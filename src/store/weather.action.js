@@ -41,11 +41,11 @@ export function loadFavorites() {
     }
 }
 
-export function addToFavorites(location) {
+export function addToFavorites(location, weatherData) {
     return async (dispatch) => {
         try {
-            await favoritesService.addToFavorites(location);
-            dispatch({ type: 'ADD_FAVORITES', location });
+            const newFavorite = await favoritesService.addToFavorites(location, weatherData);
+            dispatch({ type: 'ADD_FAVORITES', newFavorite });
             return Promise.resolve();
         } catch (err) {
             console.log('Couldn\'t add to favorites:', err);

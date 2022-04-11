@@ -13,11 +13,12 @@ async function getFavoriteLocations() {
     return Promise.resolve(favoriteLocations);
 }
 
-async function addToFavorites(locationData) {
+async function addToFavorites(locationData, weatherData) {
     const favoriteLocations = await storageService.loadFromStorage(DB_KEY);
-    favoriteLocations.push(locationData);
+    const newFavorite = _createFavorite(locationData, weatherData);
+    favoriteLocations.push(newFavorite);
     storageService.saveToStorage(DB_KEY, favoriteLocations);
-    return Promise.resolve(favoriteLocations);
+    return Promise.resolve(newFavorite);
 }
 
 async function removeFromFavorites(locationKey) {
@@ -25,4 +26,18 @@ async function removeFromFavorites(locationKey) {
     const updatedFavorites = favoriteLocations.filter(location => location.Key !== locationKey);
     storageService.saveToStorage(DB_KEY, updatedFavorites);
     return Promise.resolve(updatedFavorites);
+}
+
+function _createFavorite(locationData, weatherData) {
+    const favorite = {
+        Key: locationData.Key,
+        LocalizedName: locationData.LocalizedName,
+        EpochDate: weatherData.EpochDate,
+        Temperature: weatherData.Temperature,
+        Day: weatherData.Day,
+        Night: weatherData.Night,
+        Link: weatherData.Link
+    }
+
+    return favorite;
 }
