@@ -1,28 +1,29 @@
 import axios from 'axios';
 
 const BASE_URL = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/'
+const GEOPOS_URL = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=';
 const API_KEY = "rQYaZXc5Pqjzz6HaAuLtZcK2anQuziYK";
+
 
 export const weatherService = {
     getWeatherInfo,
     initLocation,
+    getCurrLocationInfo
 }
 
 async function getWeatherInfo(location) {
     try {
-        const {data} = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
+        const { data } = await axios.get(`${BASE_URL + location.Key}?apikey=${API_KEY}`);
         console.log('weather.service.js 💤 19: ', data);
-        return Promise.resolve(data.DailyForecasts);
+        return Promise.resolve(data);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
     }
 }
 
-// TODO: figure out if the same method to retrieve weather data from string and from lat/lng is the same 
-// and refactor function to simply call getWeatherInfo with currLocation (and add "|| tlv" to the const) 
 async function initLocation() {
-    // TODO: ask for current location and replace null with the command
-    const currLocation = null;
+    let currLocation = null;
+    navigator.geolocation.getCurrentPosition(currLocation);
 
     if (!currLocation) {
         try {
@@ -34,30 +35,47 @@ async function initLocation() {
         }
     }
 
+    const { coords } = currLocation;
     try {
-        // TODO: correctly insert location into the search key
-        const {data} = await axios.get(`${BASE_URL + currLocation.Key}?apikey=${API_KEY}`);
-        return Promise.resolve(data);
+        const { data } = await axios.get(`${GEOPOS_URL + API_KEY}q=${coords.latitude},${coords.longitude}`);
+        const weatherInfo = await getWeatherInfo(data);
+        return Promise.resolve(weatherInfo);
     } catch (err) {
         console.error('Encountered error fetching data:', err);
     }
 }
 
+async function getCurrLocationInfo() {
+    let currLocation = null;
+    navigator.geolocation.getCurrentPosition(currLocation);
+
+    if (!currLocation) return Promise.reject('Either you didn\'t allow this app to use your location or your browser doesn\'t support this service');
+
+    const { coords } = currLocation;
+
+    try {
+        const { data } = await axios.get(`${GEOPOS_URL + API_KEY}q=${coords.latitude},${coords.longitude}`);
+        const weatherInfo = await getWeatherInfo(data);
+        return Promise.resolve(weatherInfo);
+    } catch (err) {
+        console.error('Encountered error fetching data:', err);
+    }
+}
 
 function _getDefaultCity() {
     const city = {
         Version: 1,
-        Key: "215854",
-        Type: "City",
+        Key: '215854',
+        Type: 'City',
         Rank: 31,
-        LocalizedName: "Tel Aviv",
+        LocalizedName: 'Tel Aviv',
         Country: {
-            ID: "IL",
-            LocalizedName: "Israel"
+            ID: 'IL',
+            LocalizedName: 'Israel'
         },
         AdministrativeArea: {
             ID: 'TA',
-            LocalizedName: "Tel Aviv"
+            LocalizedName: 'Tel Aviv'
         }
     };
 

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { lodash as _ } from 'lodash';
 
-import { loadWeatherInfo, loadSuggestions, loadFavorites, addToFavorites, removeFromFavorites } from '../store/weather.action';
+import { loadWeatherInfo, loadSuggestions, addToFavorites, removeFromFavorites } from '../store/weather.action';
 import { SearchBar } from '../cmps/SearchBar';
 import { WeatherList } from '../cmps/weather/WeatherList';
+import { MainForecast } from '../cmps/weather/MainForecast';
 
 function _WeatherApp(props) {
     const { weatherInfo,
@@ -12,19 +13,49 @@ function _WeatherApp(props) {
         favorites,
         loadWeatherInfo,
         loadSuggestions,
-        loadFavorites,
         addToFavorites,
         removeFromFavorites
     } = props;
 
-    const onSearch = _.debounce(async (data) => {
-        await loadWeatherInfo(data);
-    }, 500);
+    const [currLocation, setCurrLocation] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            await loadWeatherInfo();
+        })()
+    }, []);
+
+    const onSearch = async (data) => {
+        if (typeof (data) === String) {
+            if (!locations.length) return;
+            await loadWeatherInfo(locations[0]);
+            setCurrLocation(locations[0])
+        } else {
+            await loadWeatherInfo(data);
+            setCurrLocation(data);
+        }
+    };
+
+    const onGetSuggestions = _.debounce(async (data) => {
+        await loadSuggestions(data);
+    }, 500)
+
+    const onToggleFavorites = (data, action) => {
+        if(action) addToFavorites(data);
+        else removeFromFavorites(data);
+    }
 
     return (
         <section className="weather-app">
-            <SearchBar onSearch={onSearch} placeholder="Search location" loadSuggestions={loadSuggestions} />
-            <WeatherList weatherList={weatherInfo} />
+            <SearchBar onSearch={onSearch}
+                placeholder="Search location"
+                onGetSuggestions={onGetSuggestions}
+                suggestions={locations} />
+            <MainForecast currLocation={currLocation}
+                mainForecast={weatherInfo.Headline}
+                favorites={favorites}
+                onToggleFavorites={onToggleFavorites} />
+            <WeatherList weatherList={weatherInfo.DailyForecasts} />
         </section>
     )
 }
@@ -39,7 +70,6 @@ function mapStateToProps({ weatherModule }) {
 const mapDispatchToProps = {
     loadWeatherInfo,
     loadSuggestions,
-    loadFavorites,
     addToFavorites,
     removeFromFavorites
 }

@@ -7,12 +7,10 @@ export function loadWeatherInfo(location = null) {
         const state = getState();
         const { weatherInfo } = state.weatherModule;
         try {
-            const newInfo = weatherInfo.length ? await weatherService.getWeatherInfo(location) :
+            const newInfo = weatherInfo ? await weatherService.getWeatherInfo(location) :
                 await weatherService.initLocation();
-            // if (weatherInfo.length) weatherInfo = await weatherService.getWeatherInfo(location);
-            // else weatherInfo = await weatherService.initLocation();
             dispatch({ type: 'SET_WEATHER_INFO', newInfo });
-            return Promise.resolve(newInfo);
+            return Promise.resolve();
         } catch (err) {
             console.log('Couldn\'t retrieve weather info:', err);
         }
@@ -24,7 +22,7 @@ export function loadSuggestions(val) {
         try {
             const locations = await searchService.suggestedLocations(val);
             dispatch({ type: 'SET_LOCATIONS', locations });
-            return Promise.resolve(locations);
+            return Promise.resolve();
         } catch (err) {
             console.log('Couldn\'t retrieve location suggestions:', err);
         }
@@ -36,7 +34,7 @@ export function loadFavorites() {
         try {
             const favorites = await favoritesService.getFavoriteLocations();
             dispatch({ type: 'SET_FAVORITES', favorites });
-            return Promise.resolve(favorites);
+            return Promise.resolve();
         } catch (err) {
             console.log('Couldn\'t retrieve favorites:', err);
         }
@@ -48,7 +46,7 @@ export function addToFavorites(location) {
         try {
             const newFavorites = await favoritesService.addToFavorites(location);
             dispatch({ type: 'ADD_FAVORITES', location });
-            return Promise.resolve(newFavorites);
+            return Promise.resolve();
         } catch (err) {
             console.log('Couldn\'t add to favorites:', err);
         }
@@ -60,7 +58,7 @@ export function removeFromFavorites(key) {
         try {
             const newFavorites = await favoritesService.removeFromFavorites(key);
             dispatch({ type: 'REMOVE_FAVORITES', key });
-            return Promise.resolve(newFavorites);
+            return Promise.resolve();
         } catch (err) {
             console.log('Couldn\'t remove from favorites:', err);
         }

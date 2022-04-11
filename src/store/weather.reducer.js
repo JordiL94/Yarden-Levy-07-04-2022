@@ -1,5 +1,5 @@
 const initialState = {
-    weatherInfo: [],
+    weatherInfo: {},
     locations: [],
     favorites: []
 };
@@ -9,7 +9,7 @@ export function weatherReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'SET_WEATHER_INFO':
-            newState = { ...state, weatherInfo: [...action.newInfo] };
+            newState = { ...state, weatherInfo: {...action.newInfo} };
             break;
         case 'SET_LOCATIONS':
             newState = { ...state, locations: [...action.locations] };
