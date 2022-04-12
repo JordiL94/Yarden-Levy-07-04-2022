@@ -24,7 +24,7 @@ export const WeatherPreview = ({ weatherItem, isFarenheit, fromFavorites, loadWe
                 <h2>{Day.IconPhrase}</h2>
                 <h3>{displayTemp}</h3>
             </div>
-            {fromFavorites ? <h5>{weatherItem.LocalizedName}</h5> : <a href={Link}>Read More</a>}
+            {fromFavorites && <h5>{weatherItem.LocalizedName}</h5>}
         </div>
     )
 }

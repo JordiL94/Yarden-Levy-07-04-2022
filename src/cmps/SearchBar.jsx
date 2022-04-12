@@ -7,7 +7,7 @@ export const SearchBar = (props) => {
 
     const handleChange = ({ target }) => {
         const { value } = target;
-        const allowed = /[a-zA-Z]/;
+        const allowed = /[a-zA-Z ]/;
         const charIdx = value.length - 1;
         if (charIdx === -1 || allowed.test(value[charIdx])) setInputVal(value);
     }
@@ -33,7 +33,7 @@ export const SearchBar = (props) => {
                     {suggestions.map(suggestion => <li onClick={() => {
                         onSearch(suggestion);
                         setInputVal('');
-                    }} key={suggestion.Key}>{suggestion.LocalizedName}</li>)}
+                    }} key={suggestion.Key}>{`${suggestion.LocalizedName}, ${suggestion.Country.ID}`}</li>)}
                 </ul> : <React.Fragment />}
         </section>
     )

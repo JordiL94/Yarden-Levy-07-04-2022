@@ -12,7 +12,6 @@ export const SlideMenu = (props) => {
                 <Link to={'/favorites'}>Favorites</Link>
             </nav>
             <div className="settings flex">
-                {/* <button onClick={() => toggleDarkMode()}>Dark Mode {isDarkMode ? 'ON' : 'OFF'}</button> */}
                 <p>Dark Mode <Switch checked={isDarkMode} onChange={() => toggleDarkMode()}
                     inputProps={{ 'aria-label': 'controlled' }} /></p>
                 <button onClick={() => toggleFarenheit()}>Degree Type {isFarenheit ? '°F' : '°C'}</button>

@@ -4,7 +4,6 @@ const BASE_URL = 'https://dataservice.accuweather.com/forecasts/v1/daily/5day/'
 const GEOPOS_URL = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=';
 const API_KEY = "da9eCp1iqA73ObtDdGTfAmwAIIXxfiI3";
 
-
 export const weatherService = {
     getWeatherInfo,
     initLocation,
