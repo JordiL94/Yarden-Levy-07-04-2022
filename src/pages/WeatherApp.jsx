@@ -44,7 +44,7 @@ function _WeatherApp(props) {
     }
 
     return (
-        <section className={isDarkMode ? "weather-app" : "weather-app dark"}>
+        <section className={isDarkMode ? "weather-app dark" : "weather-app"}>
             <SearchBar onSearch={onSearch} placeholder="Search location"
                 onGetSuggestions={onGetSuggestions} suggestions={locations} />
             <MainForecast mainForecast={weatherInfo.Headline}

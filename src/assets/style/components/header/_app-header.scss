@@ -4,6 +4,27 @@
 	height: 4.6875rem;
 	border-bottom: 1px solid #e0e0e0;
 	background: #f7f7f7;
+	
+	&.dark {
+		color: #FDFDFD;
+		background-color: #111111;
+		border-bottom: 1px solid #181818;
+		.desktop-nav a {
+			color: #FDFDFD;
+			&:hover {
+				background: #363636;
+			}
+		}
+		.slide-menu {
+			background-color: #111111;
+			button {
+				color: #FDFDFD;
+				&:hover {
+					background: #363636 !important;
+				}
+			}
+		}
+	}
 
 	div {
 		align-items: center;
@@ -35,7 +56,6 @@
 		cursor: pointer;
 		border: none;
 		background-color: inherit;
-		// width: 4.6875rem;
 		font-size: 1.8rem;
 	}
 }

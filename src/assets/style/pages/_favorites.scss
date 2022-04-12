@@ -1,0 +1,6 @@
+.favorites {
+    height: calc(100vh - 4.6875rem);
+    &.dark {
+        background-color: #333333;
+    }
+}

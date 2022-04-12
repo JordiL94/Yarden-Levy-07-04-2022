@@ -11,7 +11,7 @@ const _AppHeader = (props) => {
     const [slideMenu, setSlideMenu] = useState(false);
 
     return (
-        <section className="app-header flex space-between">
+        <section className={isDarkMode ? "app-header dark flex space-between" : "app-header flex space-between"}>
             <div className="flex height-all">
                 <h1>WeatherApp</h1>
                 <nav className="desktop-nav flex">

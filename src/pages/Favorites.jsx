@@ -18,7 +18,7 @@ function _Favorites(props) {
     }, []);
 
     return (
-        <section className={isDarkMode ? "favorites" : "favorites dark"}>
+        <section className={isDarkMode ? "favorites dark" : "favorites"}>
             <WeatherList weatherList={favorites} isFarenheit={isFarenheit}
                 loadWeatherInfo={loadWeatherInfo} fromFavorites={true} />
         </section>
