@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Yarden-Levy-07-04-2022/static/css/main.d840caa1.css",
+    "main.js": "/Yarden-Levy-07-04-2022/static/js/main.5c44d5cb.js",
+    "static/media/fa-solid-900.ttf": "/Yarden-Levy-07-04-2022/static/media/fa-solid-900.de78ce19b6954a6f4144.ttf",
+    "static/media/fa-brands-400.ttf": "/Yarden-Levy-07-04-2022/static/media/fa-brands-400.c90f83fd0c6c34dd638f.ttf",
+    "static/media/Roboto-Regular.ttf": "/Yarden-Levy-07-04-2022/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
+    "static/media/Roboto-Light.ttf": "/Yarden-Levy-07-04-2022/static/media/Roboto-Light.8be2d1487420548b3b8d.ttf",
+    "static/media/fa-regular-400.ttf": "/Yarden-Levy-07-04-2022/static/media/fa-regular-400.ce1650acad36ae1d3c93.ttf",
+    "static/media/17.png": "/Yarden-Levy-07-04-2022/static/media/17.4b8d4543699af9743509.png",
+    "static/media/41.png": "/Yarden-Levy-07-04-2022/static/media/41.da8960711b2a7bdd80c0.png",
+    "static/media/16.png": "/Yarden-Levy-07-04-2022/static/media/16.02f6796a4b217cbdd262.png",
+    "static/media/15.png": "/Yarden-Levy-07-04-2022/static/media/15.9aac7942a26db293440b.png",
+    "index.html": "/Yarden-Levy-07-04-2022/index.html",
+    "main.d840caa1.css.map": "/Yarden-Levy-07-04-2022/static/css/main.d840caa1.css.map",
+    "main.5c44d5cb.js.map": "/Yarden-Levy-07-04-2022/static/js/main.5c44d5cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d840caa1.css",
+    "static/js/main.5c44d5cb.js"
+  ]
+}
