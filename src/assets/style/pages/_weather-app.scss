@@ -2,7 +2,7 @@
     height: fit-content;
     min-height: calc(100vh - 4.6875rem);
     &.dark {
-        background-color: #333333;
+        background-color: $clr2;
         .main-forecast {
             color: #fff;
         }

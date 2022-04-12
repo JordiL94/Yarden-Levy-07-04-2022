@@ -17,19 +17,20 @@
     .favorite {
         border: none;
         color: #fff;
-        background-color: #0CC92A;
+        background-color: $clr3;
         transition: .1s ease;
         &:hover {
-            background-color: #c62a2a;
+            background-color: $clr4;
         }
     }
     
     .not-favorite {
         transition: .1s ease;
+        background-color: #fff;
         &:hover {
-            border-color: #0CC92A;
+            border-color: $clr3;
             color: #fff;
-            background-color: #0CC92A;
+            background-color: $clr3;
         }
     }
 

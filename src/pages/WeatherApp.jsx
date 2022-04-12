@@ -21,7 +21,7 @@ function _WeatherApp(props) {
 
     useEffect(() => {
         (async () => {
-             await loadWeatherInfo();
+            if(!weatherInfo?.Headline) await loadWeatherInfo();
         })()
     }, []);
 

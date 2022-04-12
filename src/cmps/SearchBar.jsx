@@ -12,6 +12,11 @@ export const SearchBar = (props) => {
         if (charIdx === -1 || allowed.test(value[charIdx])) setInputVal(value);
     }
 
+    const handleSearch = (val) => {
+        onSearch(val);
+        setInputVal('');
+    }
+
     useEffect(() => {
         if (inputVal.length < 2) return;
         onGetSuggestions(inputVal);
@@ -19,21 +24,14 @@ export const SearchBar = (props) => {
 
     return (
         <section className="search">
-            <form onSubmit={() => {
-                if (inputVal.length > 2) {
-                    onSearch(inputVal)
-                    setInputVal('')
-                }
-            }} className="search-bar flex" autoComplete="off" >
+            <form onSubmit={() => { if (inputVal.length > 2) handleSearch(inputVal) }} className="search-bar flex" autoComplete="off" >
                 <input type="text" value={inputVal} onChange={handleChange} placeholder={placeholder} />
                 <button><span className="fa-solid magnifying-glass"></span></button>
             </form>
             {suggestions?.length && inputVal.length >= 2 ?
                 <ul className="search-suggestions clean-list flex column">
-                    {suggestions.map(suggestion => <li onClick={() => {
-                        onSearch(suggestion);
-                        setInputVal('');
-                    }} key={suggestion.Key}>{`${suggestion.LocalizedName}, ${suggestion.Country.ID}`}</li>)}
+                    {suggestions.map(suggestion => <li onClick={() => handleSearch(suggestion)}
+                        key={suggestion.Key}>{`${suggestion.LocalizedName}, ${suggestion.Country.ID}`}</li>)}
                 </ul> : <React.Fragment />}
         </section>
     )

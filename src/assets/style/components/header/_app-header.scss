@@ -2,12 +2,12 @@
 	padding: 0 .5rem;
 	width: 100%;
 	height: 4.6875rem;
-	border-bottom: 1px solid #e0e0e0;
+	border-bottom: 1px solid $clr5;
 	background: #f7f7f7;
 	
 	&.dark {
 		color: #FDFDFD;
-		background-color: #111111;
+		background-color: $clr1;
 		border-bottom: 1px solid #181818;
 		.desktop-nav a {
 			color: #FDFDFD;
@@ -16,7 +16,7 @@
 			}
 		}
 		.slide-menu {
-			background-color: #111111;
+			background-color: $clr1;
 			button {
 				color: #FDFDFD;
 				&:hover {
