@@ -1,10 +1,10 @@
+import React from 'react';
 import { WeatherPreview } from './WeatherPreview';
-import { Loading } from '../Loading';
 
 export const WeatherList = (props) => {
     const { weatherList, isFarenheit, fromFavorites, loadWeatherInfo } = props;
 
-    if (!weatherList) return <Loading />;
+    if (!weatherList) return <React.Fragment />;
 
     return (
         <section className="weather-list flex">
