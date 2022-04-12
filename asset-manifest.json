@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Yarden-Levy-07-04-2022/static/css/main.d840caa1.css",
-    "main.js": "/Yarden-Levy-07-04-2022/static/js/main.295fc27b.js",
+    "main.css": "/Yarden-Levy-07-04-2022/static/css/main.98828926.css",
+    "main.js": "/Yarden-Levy-07-04-2022/static/js/main.5e3ae57f.js",
     "static/media/fa-solid-900.ttf": "/Yarden-Levy-07-04-2022/static/media/fa-solid-900.de78ce19b6954a6f4144.ttf",
     "static/media/fa-brands-400.ttf": "/Yarden-Levy-07-04-2022/static/media/fa-brands-400.c90f83fd0c6c34dd638f.ttf",
     "static/media/Roboto-Regular.ttf": "/Yarden-Levy-07-04-2022/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
@@ -12,11 +12,11 @@
     "static/media/16.png": "/Yarden-Levy-07-04-2022/static/media/16.02f6796a4b217cbdd262.png",
     "static/media/15.png": "/Yarden-Levy-07-04-2022/static/media/15.9aac7942a26db293440b.png",
     "index.html": "/Yarden-Levy-07-04-2022/index.html",
-    "main.d840caa1.css.map": "/Yarden-Levy-07-04-2022/static/css/main.d840caa1.css.map",
-    "main.295fc27b.js.map": "/Yarden-Levy-07-04-2022/static/js/main.295fc27b.js.map"
+    "main.98828926.css.map": "/Yarden-Levy-07-04-2022/static/css/main.98828926.css.map",
+    "main.5e3ae57f.js.map": "/Yarden-Levy-07-04-2022/static/js/main.5e3ae57f.js.map"
   },
   "entrypoints": [
-    "static/css/main.d840caa1.css",
-    "static/js/main.295fc27b.js"
+    "static/css/main.98828926.css",
+    "static/js/main.5e3ae57f.js"
   ]
 }
