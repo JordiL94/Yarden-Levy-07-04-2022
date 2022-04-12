@@ -1,38 +1,59 @@
 .slide-menu {
-    text-align: center;
-    padding: 4rem 0 3rem;
-    position: fixed;
-    transform: translateX(100%);
-    top: 4.6875rem;
-    height: calc(100% - 4.6875rem);
-    background-color: #f7f7f7;
-    min-width: 15rem;
-    transition: .5s ease;
-    right: 0;
+	z-index: 3;
+	text-align: center;
+	padding: 8rem 0 3rem;
+	position: fixed;
+	transform: translateX(100%);
+	height: 100%;
+	background-color: #f7f7f7;
+	min-width: 15rem;
+	transition: 0.5s ease;
+	right: 0;
 
-    &.visible {
-        transform: translateX(0);
-    }
+	&.visible {
+		transform: translateX(0);
+	}
 
-    .mobile-nav {
-        display: none;
-    }
+	.mobile-nav {
+		display: none;
+	}
 
-    .settings {
-        align-items: center;
-        flex-direction: column;
-        gap: 2rem;
-    }
+	.settings {
+		align-items: center;
+		flex-direction: column;
+		gap: 2rem;
+	}
 
-    button {
-        font-size: 1rem;
-        padding: .5rem;
-        width: 100%;
-        cursor: pointer;
+	button {
+		font-size: 1rem;
+		padding: 0.5rem;
+		width: 100%;
+		cursor: pointer;
 		border: none;
 		background-color: inherit;
-        &:hover {
-            background: #efeeee;
-        }
-    }
+		&:hover {
+			background: #efeeee;
+		}
+	}
+}
+
+@media screen and (max-width: 762px) {
+	.slide-menu .mobile-nav {
+		color: black;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+
+		a {
+			font-size: 1rem;
+			padding: 0.5rem;
+			width: 100%;
+			cursor: pointer;
+			border: none;
+			background-color: inherit;
+			&:hover {
+				background: #efeeee;
+			}
+		}
+	}
 }

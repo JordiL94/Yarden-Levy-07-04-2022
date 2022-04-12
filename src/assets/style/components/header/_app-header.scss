@@ -23,6 +23,9 @@
 					background: #363636 !important;
 				}
 			}
+			.mobile-nav {
+				color: #FDFDFD;
+			}
 		}
 		.settings-button {
 			color: #FDFDFD;
@@ -55,7 +58,7 @@
 	}
 
 	.settings-button {
-		z-index: 3;
+		z-index: 4;
 		cursor: pointer;
 		border: none;
 		background-color: inherit;

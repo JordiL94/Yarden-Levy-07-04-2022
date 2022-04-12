@@ -7,7 +7,7 @@ export const SlideMenu = (props) => {
 
     return (
         <section className={slideMenu ? "slide-menu visible flex column space-between" : "slide-menu flex column space-between"}>
-            <nav className="mobile-nav flex column">
+            <nav className="mobile-nav">
                 <Link to={'/'}>Home</Link>
                 <Link to={'/favorites'}>Favorites</Link>
             </nav>

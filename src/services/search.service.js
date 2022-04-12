@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const DB_KEY = 'location';
 const BASE_URL = 'https://dataservice.accuweather.com//locations/v1/cities/autocomplete?apikey=';
-const API_KEY = "rQYaZXc5Pqjzz6HaAuLtZcK2anQuziYK";
+const API_KEY = "da9eCp1iqA73ObtDdGTfAmwAIIXxfiI3";
 
 export const searchService = {
     suggestedLocations
