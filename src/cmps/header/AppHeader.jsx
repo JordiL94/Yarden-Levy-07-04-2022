@@ -19,7 +19,7 @@ const _AppHeader = (props) => {
                     <Link to={'/favorites'}>Favorites</Link>
                 </nav>
             </div>
-            <button className='settings-button' onClick={() => setSlideMenu(!slideMenu)}>⚙️</button>
+            <button className='settings-button' onClick={() => setSlideMenu(!slideMenu)}><span className="fa-solid bars"></span></button>
             <SlideMenu toggleDarkMode={toggleDarkMode} toggleFarenheit={toggleFarenheit}
                 isDarkMode={isDarkMode} isFarenheit={isFarenheit} slideMenu={slideMenu} />
         </section>

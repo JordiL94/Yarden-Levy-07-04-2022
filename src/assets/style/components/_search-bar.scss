@@ -29,6 +29,12 @@
 			background-color: inherit;
 			border: none;
 			border-inline-start: 1px solid #f1eeed;
+			&:hover {
+				background-color: #edebef;
+			}
+			span {
+				font-size: 1.2rem;
+			}
 		}
 	}
 

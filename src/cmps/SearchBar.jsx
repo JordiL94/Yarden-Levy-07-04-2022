@@ -19,7 +19,7 @@ export const SearchBar = (props) => {
         <section className="search">
             <form onSubmit={() => {if(inputVal.length > 2) onSearch(inputVal)}} className="search-bar flex" autoComplete="off" >
                 <input type="text" value={inputVal} onChange={handleChange} placeholder={placeholder} pattern="[a-zA-Z]" />
-                <button>🔍</button>
+                <button><span className="fa-solid magnifying-glass"></span></button>
             </form>
             {suggestions?.length && inputVal.length >=2 ?
                 <ul className="search-suggestions clean-list flex column">

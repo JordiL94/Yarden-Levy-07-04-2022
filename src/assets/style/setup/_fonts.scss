@@ -33,3 +33,10 @@
 .fa-brands {
 	font-family: fa-brands;
 }
+
+.fa-solid.magnifying-glass::before {
+	content: '\f002';
+}
+.fa-solid.bars::before {
+	content: '\f0c9';
+}
