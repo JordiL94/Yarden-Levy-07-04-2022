@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 
-import { loadWeatherInfo, loadSuggestions, addToFavorites, removeFromFavorites } from '../store/weather.action';
+import { loadWeatherInfo, loadSuggestions, addToFavorites, removeFromFavorites } from '../store/actions/weather.action';
 import { SearchBar } from '../cmps/SearchBar';
 import { WeatherList } from '../cmps/weather/WeatherList';
 import { MainForecast } from '../cmps/weather/MainForecast';

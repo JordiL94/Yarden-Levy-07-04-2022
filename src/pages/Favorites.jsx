@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { loadFavorites, loadWeatherInfo } from '../store/weather.action';
+import { loadFavorites, loadWeatherInfo } from '../store/actions/weather.action';
 import { SearchBar } from '../cmps/SearchBar';
 import { WeatherList } from '../cmps/weather/WeatherList';
 

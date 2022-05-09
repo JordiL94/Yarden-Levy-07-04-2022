@@ -1,6 +1,6 @@
-import { weatherService } from '../services/weather.service.js';
-import { searchService } from '../services/search.service.js';
-import { favoritesService } from '../services/favorites.service.js';
+import { weatherService } from '../../services/weather.service.js';
+import { searchService } from '../../services/search.service.js';
+import { favoritesService } from '../../services/favorites.service.js';
 
 export function loadWeatherInfo(location = null) {
     return async (dispatch) => {

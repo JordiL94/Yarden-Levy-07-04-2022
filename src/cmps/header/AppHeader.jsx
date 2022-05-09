@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { toggleDarkMode, toggleFarenheit } from '../../store/user.action';
+import { toggleDarkMode, toggleFarenheit } from '../../store/actions/user.action';
 import { SlideMenu } from './SlideMenu';
 
 const _AppHeader = (props) => {
